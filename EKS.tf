@@ -50,9 +50,7 @@ resource "aws_eks_node_group" "nodegrouptest" {
   node_group_name = "TestNodeGroup"
   node_role_arn = aws_iam_role.eksiamtest.arn
   subnet_ids = [aws_subnet.private.id, aws_subnet.public.id]
-
-  instance_types =["t2.micro","t2.micro"]
-  ami_type = "AL2_x86_64"
+  
 
   scaling_config {
     desired_size = 1
