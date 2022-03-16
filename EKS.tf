@@ -62,3 +62,11 @@ resource "aws_eks_node_group" "nodegrouptest" {
     max_unavailable = 2
   }
 }
+
+output "eks_clsuter_endpoint" {
+  value = "${aws_eks_cluster.testcluster.endpoint}"
+}
+
+output "eks_cluster_certificate_authority" {
+  value = "${aws_eks_cluster.testcluster.certificate_authority}"
+}
