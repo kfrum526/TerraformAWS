@@ -25,7 +25,7 @@ resource "aws_eks_node_group" "nodegrouptest" {
   }
 }
 
-output "eks_clsuter_endpoint" {
+output "eks_cluster_endpoint" {
   value = "${aws_eks_cluster.testcluster.endpoint}"
 }
 
