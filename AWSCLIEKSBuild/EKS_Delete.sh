@@ -3,11 +3,13 @@
 source EKS_Vars.sh
 
 ## Delete EKS Node Group
-# aws eks delete-nodegroup \
-#     --cluster-name EKSCLICluster \
-#     --nodegroup-name EKSCLINodeGroup
+aws eks delete-nodegroup \
+    --cluster-name EKSCLICluster \
+    --nodegroup-name EKSCLINodeGroup
 
-## Delete EKS Cluster
+aws eks wait nodegroup-deleted --nodegroup-name EKSCLINodeGroup --cluster-name EKSCLICluster
+
+# # Delete EKS Cluster
 # aws eks delete-cluster \
 #     --name EKSCLICluster
 
@@ -18,5 +20,6 @@ source EKS_Vars.sh
 #     --subnet-id $pubsubid
 
 ## Delete Route
-aws ec2 delete-route \
-    --route-table-id $rtid
+# aws ec2 delete-route \
+#     --route-table-id $rtid \
+#     --destination-cidr-block 0.0.0.0/0
