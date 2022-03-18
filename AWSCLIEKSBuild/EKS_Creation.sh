@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source EKS_Vars.sh
+
+
 # EKS Cluster creation
 aws eks create-cluster \
     --name EKSCLICluster \
