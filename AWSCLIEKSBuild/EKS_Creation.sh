@@ -2,26 +2,26 @@
 
 source EKS_Vars.sh
 
-
-# EKS Cluster creation
+# # EKS Cluster creation
 aws eks create-cluster \
-    --name EKSCLICluster \
+    --name $CLUSTERNAME \
     --role-arn $eksarn \
     --resources-vpc-config subnetIds=$pubsubid,$privsubid
 
 aws eks wait cluster-active \
-    --name EKSCLICluster
+    --name $CLUSTERNAME
 
 # Create nodegroup for EKS cluster * Cluster name hardcoded til i can figure out how to make a variable
 aws eks create-nodegroup \
-    --cluster-name EKSCLICluster \
-    --nodegroup-name EKSCLINodeGroup \
+    --cluster-name $CLUSTERNAME \
+    --nodegroup-name $NODEGROUP \
     --subnets $pubsubid $privsubid \
     --node-role $eksarn \
-    --scaling-config minSize=1,maxSize=2,desiredSize=1 \
-    --update-config maxUnavailable=2 \
-    --tags kubernetes.io/cluster/EKSCLICluster="owned"
+    --instance-size $INSTANCECSIZE \
+    --scaling-config minSize=$MINISIZE,maxSize=$MAXISIZE,desiredSize=$DESSIZE \
+    --update-config maxUnavailable=$UNAVAILSIZE \
+    --tags kubernetes.io/cluster/$CLUSTERNAME="owned"
 
 aws eks wait nodegroup-active \
-    --cluster-name EKSCLICluster \
-    --nodegroup-name EKSCLINodeGroup
+    --cluster-name $CLUSTERNAME \
+    --nodegroup-name $NODEGROUP

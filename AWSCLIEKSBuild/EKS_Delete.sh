@@ -1,17 +1,22 @@
 #!/bin/bash
 
-source EKS_Vars.sh
+source EKS_DEL_Vars.sh
 
 ## Delete EKS Node Group
 aws eks delete-nodegroup \
-    --cluster-name EKSCLICluster \
-    --nodegroup-name EKSCLINodeGroup
+    --cluster-name $CLUSTERNAME \
+    --nodegroup-name $NODEGROUP
 
-aws eks wait nodegroup-deleted --nodegroup-name EKSCLINodeGroup --cluster-name EKSCLICluster
+aws eks wait nodegroup-deleted \
+    --nodegroup-name $NODEGROUP \
+    --cluster-name $CLUSTERNAME
 
-# # Delete EKS Cluster
-# aws eks delete-cluster \
-#     --name EKSCLICluster
+# Delete EKS Cluster
+aws eks delete-cluster \
+    --name $CLUSTERNAME
+
+aws eks wait cluster-deleted \
+    --cluster-identifier $CLUSTERNAME
 
 ## Delete Subnets
 # aws ec2 delete-subnet \

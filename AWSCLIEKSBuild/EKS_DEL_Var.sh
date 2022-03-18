@@ -14,18 +14,3 @@ read CLUSTERNAME
 
 echo "NodeGroup Name"
 read NODEGROUP
-
-echo "Instance size of nodes?"
-read INSTANCESIZE
-
-echo "What is the maximum amount of cluster nodes you want?"
-read MAXISIZE
-
-echo "What is the minimum amount of cluster nodes you want?"
-read MINISIZE
-
-echo "What is the desired size of the cluster node"
-read DESSIZE
-
-echo "How many nodes will be unavailable when needing to update?"
-read UNAVAILSIZE
