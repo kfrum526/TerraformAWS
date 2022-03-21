@@ -17,7 +17,7 @@ aws eks create-nodegroup \
     --nodegroup-name $NODEGROUP \
     --subnets $pubsubid $privsubid \
     --node-role $eksarn \
-    --instance-size $INSTANCECSIZE \
+    --instance-type $INSTANCESIZE \
     --scaling-config minSize=$MINISIZE,maxSize=$MAXISIZE,desiredSize=$DESSIZE \
     --update-config maxUnavailable=$UNAVAILSIZE \
     --tags kubernetes.io/cluster/$CLUSTERNAME="owned"
