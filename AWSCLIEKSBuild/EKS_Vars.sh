@@ -8,6 +8,7 @@ privsubname=$(aws ec2 describe-subnets --filters Name=tag:Name,Values=CLIPrivSub
 igwid=$(aws ec2 describe-internet-gateways --filters Name=tag:Name,Values=CLI-IGW --query "InternetGateways[*].{ID:InternetGatewayId}" --output text)
 rtid=$(aws ec2 describe-route-tables --filters Name=tag:Name,Values=CLI-RT --query "RouteTables[*].{ID:RouteTableId}" --output text)
 eksarn=$(aws iam get-role --role-name clieksiamtest --query Role.Arn --output text)
+cluster=$(aws eks describe-cluster --name $CLUSTERNAME --query cluster.name --output text)
 
 echo "Cluster Name"
 read CLUSTERNAME
