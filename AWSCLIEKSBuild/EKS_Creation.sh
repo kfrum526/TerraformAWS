@@ -9,11 +9,16 @@ aws eks create-cluster \
     --resources-vpc-config subnetIds=$pubsubid,$privsubid \
     >/dev/null
 
-echo "Waiting for cluster to be created"
+clear
+
+echo "Waiting for cluster to be created..."
 aws eks wait cluster-active \
     --name $CLUSTERNAME
+echo "Cluster has been successfully created..."
 
-# Create nodegroup for EKS cluster * Cluster name hardcoded til i can figure out how to make a variable
+clear
+
+# Create nodegroup for EKS cluster
 aws eks create-nodegroup \
     --cluster-name $CLUSTERNAME \
     --nodegroup-name $NODEGROUP \
@@ -25,7 +30,8 @@ aws eks create-nodegroup \
     --tags kubernetes.io/cluster/$CLUSTERNAME="owned" \
     >/dev/null
 
-echo "Waiting for NodeGroup"
+echo "Waiting for NodeGroup to be created..."
 aws eks wait nodegroup-active \
     --cluster-name $CLUSTERNAME \
     --nodegroup-name $NODEGROUP
+echo "NodeGroup has been created successfully..."

@@ -16,15 +16,21 @@ aws eks wait nodegroup-deleted \
 
 echo "NodeGroup has been deleted"
 
+sleep 1
+clear
+
 # Delete EKS Cluster
 aws eks delete-cluster \
     --name $CLUSTERNAME \
     >/dev/null
 
+clear
+
 echo "Waiting to delete Cluster"
 aws eks wait cluster-deleted \
-    --cluster-identifier $CLUSTERNAME
+    --name $CLUSTERNAME
 
+clear
 echo "Cluster has been deleted"
 
 ## Delete Subnets
