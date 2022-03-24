@@ -6,8 +6,10 @@ source EKS_Vars.sh
 aws eks create-cluster \
     --name $CLUSTERNAME \
     --role-arn $eksarn \
-    --resources-vpc-config subnetIds=$pubsubid,$privsubid
+    --resources-vpc-config subnetIds=$pubsubid,$privsubid \
+    >/dev/null
 
+echo "Waiting for cluster to be created"
 aws eks wait cluster-active \
     --name $CLUSTERNAME
 
@@ -20,8 +22,10 @@ aws eks create-nodegroup \
     --instance-type $INSTANCESIZE \
     --scaling-config minSize=$MINISIZE,maxSize=$MAXISIZE,desiredSize=$DESSIZE \
     --update-config maxUnavailable=$UNAVAILSIZE \
-    --tags kubernetes.io/cluster/$CLUSTERNAME="owned"
+    --tags kubernetes.io/cluster/$CLUSTERNAME="owned" \
+    >/dev/null
 
+echo "Waiting for NodeGroup"
 aws eks wait nodegroup-active \
     --cluster-name $CLUSTERNAME \
     --nodegroup-name $NODEGROUP
