@@ -1,8 +1,11 @@
-source EKS_Creation.sh
+
 
 admin_menu (){
+    source EKS_functions.sh
+    source EKS_Vars.sh
+
     local PS3='Please enter option: '
-    local options=("Create EKS Cluster" "Create NodeGroup" "Delete EKS Cluster" "Delete NodeGroup" "Connect to EKS Cluster" "Quit menu")
+    local options=("Create EKS Cluster" "Create NodeGroup" "Delete EKS NodeGroup" "Delete EKS Cluster" "Connect to EKS Cluster" "Quit menu")
     local option
     select opt in "${options[@]}"
     do
@@ -11,16 +14,16 @@ admin_menu (){
                 EKS_Create
                 ;;
             "Create NodeGroup")
-                ## Insert create nodegroup functoin here
+                EKS_node
                 ;;
             "Delete EKS NodeGroup")
-                ## Insert delete EKS NodeGroup here
+                NG_del
                 ;;
             "Delete EKS Cluster")
-                ## Insert delete EKS cluster here
+                Cluster_DEL
                 ;;
             "Connect to EKS Cluster")
-                ## Insert EKS connect function here
+                connect
                 ;;
             "Quit Menu")
                 return
@@ -28,5 +31,26 @@ admin_menu (){
             *) echo "Invalid option $REPLY";;
         esac
     done
-
 }
+
+function cluster {
+
+    function list_clusters {
+
+    aws eks list-clusters --query clusters --output text
+
+    }
+
+    PS3="Select the source S3 bucket: "
+    select EKS_Cluster in $(list_clusters);
+    do
+        if [ "x$EKS_Cluster" == "x" ]; then
+            echo "You must select a valid bucket number." 1>&2
+        else
+            break
+        fi
+    done
+}
+
+
+admin_menu

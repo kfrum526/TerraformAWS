@@ -8,25 +8,4 @@ privsubname=$(aws ec2 describe-subnets --filters Name=tag:Name,Values=CLIPrivSub
 igwid=$(aws ec2 describe-internet-gateways --filters Name=tag:Name,Values=CLI-IGW --query "InternetGateways[*].{ID:InternetGatewayId}" --output text)
 rtid=$(aws ec2 describe-route-tables --filters Name=tag:Name,Values=CLI-RT --query "RouteTables[*].{ID:RouteTableId}" --output text)
 eksarn=$(aws iam get-role --role-name clieksiamtest --query Role.Arn --output text)
-cluster=$(aws eks describe-cluster --name $CLUSTERNAME --query cluster.name --output text)
-
-echo "Cluster Name"
-read CLUSTERNAME
-
-echo "NodeGroup Name"
-read NODEGROUP
-
-echo "Instance size of nodes?"
-read INSTANCESIZE
-
-echo "What is the maximum amount of cluster nodes you want?"
-read MAXISIZE
-
-echo "What is the minimum amount of cluster nodes you want?"
-read MINISIZE
-
-echo "What is the desired size of the cluster node"
-read DESSIZE
-
-echo "How many nodes will be unavailable when needing to update?"
-read UNAVAILSIZE
+# cluster=$(aws eks describe-cluster --name $CLUSTERNAME --query cluster.name --output text)
