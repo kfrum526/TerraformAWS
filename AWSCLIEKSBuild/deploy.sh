@@ -33,24 +33,4 @@ admin_menu (){
     done
 }
 
-function cluster {
-
-    function list_clusters {
-
-    aws eks list-clusters --query clusters --output text
-
-    }
-
-    PS3="Select the source S3 bucket: "
-    select EKS_Cluster in $(list_clusters);
-    do
-        if [ "x$EKS_Cluster" == "x" ]; then
-            echo "You must select a valid bucket number." 1>&2
-        else
-            break
-        fi
-    done
-}
-
-
 admin_menu
