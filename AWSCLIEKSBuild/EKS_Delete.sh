@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 source EKS_DEL_Var.sh
 
 ## Delete EKS Node Group
