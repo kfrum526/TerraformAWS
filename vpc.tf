@@ -3,6 +3,7 @@ resource "aws_vpc" "main" {
 
   tags = {
       Name = "main"
+      "kubernetes.io/cluster/${var.eks_name}" = "owned"
   }
 }
 
@@ -14,7 +15,7 @@ resource "aws_subnet" "public" {
 
  tags = {
      Name = "Public Subnet"
-     "kubernetes.io/cluster/${aws_eks_cluster.testcluster.name}" = "shared"
+     "kubernetes.io/cluster/${var.eks_name}" = "shared"
  } 
 }
 
@@ -25,7 +26,7 @@ resource "aws_subnet" "private" {
  map_public_ip_on_launch = true
  tags = {
      Name = "Private Subnet"
-     "kubernetes.io/cluster/${aws_eks_cluster.testcluster.name}" = "shared"
+     "kubernetes.io/cluster/${var.eks_name}" = "shared"
  } 
 }
 
