@@ -5,11 +5,14 @@ admin_menu (){
     source EKS_Vars.sh
 
     local PS3='Please enter option: '
-    local options=("Create EKS Cluster" "Create NodeGroup" "Delete EKS NodeGroup" "Delete EKS Cluster" "Connect to EKS Cluster" "Quit menu")
+    local options=("EKS Preparation" "Create EKS Cluster" "Create NodeGroup" "Delete EKS NodeGroup" "Delete EKS Cluster" "Connect to EKS Cluster" "Quit menu")
     local option
     select opt in "${options[@]}"
     do
         case $opt in
+            "EKS Prep")
+                EKS_Prep
+                ;;
             "Create EKS Cluster")
                 EKS_Create
                 ;;
