@@ -1,5 +1,6 @@
 resource "aws_security_group" "pubToPriv"{
     name = "pubToPriv"
+    vpc_id = aws_vpc.main.id
     description = "Specifically for bastion hosts in public subnet to connect to hosts in private subnet"
 
     ingress {
@@ -19,6 +20,7 @@ resource "aws_security_group" "pubToPriv"{
 
 resource "aws_security_group" "public" {
     name = "public"
+    vpc_id = aws_vpc.main.id
     description = "Internet Traffic"
 
     ingress {
@@ -40,7 +42,7 @@ resource "aws_security_group" "public" {
 ###################################################### EC2 #############################################################
 
 resource "aws_instance" "DomainController" {
-  ami           = var.ami_id
+  ami           = var.windows_id
   instance_type = var.instance_type
   key_name      = var.key_pair
   subnet_id     = aws_subnet.private.id
@@ -60,7 +62,7 @@ resource "aws_instance" "DomainController" {
 }
 
 resource "aws_instance" "RHEL" {
-  ami           = var.ami_id
+  ami           = var.rhel_id
   instance_type = var.instance_type
   key_name      = var.key_pair
   subnet_id     = aws_subnet.private.id
@@ -81,9 +83,9 @@ resource "aws_instance" "RHEL" {
 
 
 resource "aws_instance" "Bastion" {
-  ami           = var.ami_id
+  ami           = var.windows_id
   instance_type = var.instance_type
-  key_name      = "my-key-pair"
+  key_name      = var.key_pair
   subnet_id     = aws_subnet.public.id
   security_groups = [
     aws_security_group.public.id
