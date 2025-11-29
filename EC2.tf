@@ -42,7 +42,7 @@ resource "aws_security_group" "pub" {
 resource "aws_instance" "DomainController" {
   ami           = var.ami_id
   instance_type = var.instance_type
-  key_name      = "my-key-pair"
+  key_name      = var.key_pair
   subnet_id     = aws_subnet.private.id
   security_groups = [
     aws_security_group.pubToPriv.id
@@ -62,7 +62,7 @@ resource "aws_instance" "DomainController" {
 resource "aws_instance" "RHEL" {
   ami           = var.ami_id
   instance_type = var.instance_type
-  key_name      = "my-key-pair"
+  key_name      = var.key_pair
   subnet_id     = aws_subnet.private.id
   security_groups = [
     aws_security_group.pubToPriv.id

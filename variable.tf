@@ -13,3 +13,9 @@ variable "instance_type" {
   type        = string
   default     = "t2.micro"
 }
+
+variable "key_pair" {
+  description = "The key pair for the EC2 instance."
+  type        = string
+  default     = "In_S3_Bucket"
+}
