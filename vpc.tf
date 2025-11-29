@@ -34,6 +34,9 @@ resource "aws_internet_gateway" "gw" {
 
 resource "aws_route_table" "AWSRT1" {
   vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "AWSRT1"
+  }
 }
 
 resource "aws_route_table_association" "PubSub" {
