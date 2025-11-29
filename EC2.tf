@@ -39,18 +39,6 @@ resource "aws_security_group" "pub" {
 ########################################################################################################################
 ###################################################### EC2 #############################################################
 
-variable "ami_id" {
-  description = "The AMI ID for the EC2 instance."
-  type        = string
-  default     = "ami-0abcdef1234567890"
-}
-
-variable "instance_type" {
-  description = "The instance type for the EC2 instance."
-  type        = string
-  default     = "t2.micro"
-}
-
 resource "aws_instance" "DomainController" {
   ami           = var.ami_id
   instance_type = var.instance_type
