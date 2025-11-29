@@ -9,7 +9,7 @@ resource "aws_security_group" "pubToPriv"{
         cidr_blocks = ["10.0.2.0/24"]
     }
 
-    egress = {
+    egress {
         from_port = 0
         to_port = 0
         protocol = "tcp"
@@ -17,7 +17,7 @@ resource "aws_security_group" "pubToPriv"{
     }
 }
 
-resource "aws_security_group" "pub" {
+resource "aws_security_group" "public" {
     name = "public"
     description = "Internet Traffic"
 
@@ -28,7 +28,7 @@ resource "aws_security_group" "pub" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 
-    egress = {
+    egress {
         from_port = 0
         to_port = 0
         protocol = "tcp"
