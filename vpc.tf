@@ -39,6 +39,11 @@ resource "aws_route_table" "AWSRT1" {
   }
 }
 
+resource "aws_route_table_association" "igw_ass" {
+  route_table_id = aws_route_table.AWSRT1.id
+  gateway_id = aws_internet_gateway.gw.id
+}
+
 resource "aws_route_table_association" "PubSub" {
   route_table_id = aws_route_table.AWSRT1.id
   subnet_id = aws_subnet.public.id
