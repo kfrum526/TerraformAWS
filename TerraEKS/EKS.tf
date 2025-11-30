@@ -1,6 +1,6 @@
 resource "aws_eks_cluster" "testcluster" {
   name = "testcluster"
-  role_arn = aws_iam_role.eksiamtest.arn
+  role_arn = aws_iam_role.eksiam.arn
 
   vpc_config {
     subnet_ids = [aws_subnet.public.id, aws_subnet.private.id]
@@ -9,15 +9,15 @@ resource "aws_eks_cluster" "testcluster" {
 
 resource "aws_eks_node_group" "nodegrouptest" {
   cluster_name = aws_eks_cluster.testcluster.name
-  node_group_name = "TestNodeGroup"
-  node_role_arn = aws_iam_role.eksiamtest.arn
+  node_group_name = "NodeGroup"
+  node_role_arn = aws_iam_role.eksiam.arn
   subnet_ids = [aws_subnet.private.id, aws_subnet.public.id]
   
 
   scaling_config {
-    desired_size = 3
-    max_size = 6
-    min_size = 3
+    desired_size = 1
+    max_size = 3
+    min_size = 1
   }
 
   update_config {

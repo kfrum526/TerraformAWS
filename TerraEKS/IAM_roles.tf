@@ -1,4 +1,4 @@
-resource "aws_iam_role" "eksiamtest" {
+resource "aws_iam_role" "eksiam" {
   name = "eksiamtest"
 
   assume_role_policy = <<POLICY
