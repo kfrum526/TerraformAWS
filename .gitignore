@@ -1,0 +1,5 @@
+# Ignore the Terraform executable
+terraform.exe
+
+# Ignore the dependency lock file (optional, see recommendation below)
+.terraform.lock.hcl
