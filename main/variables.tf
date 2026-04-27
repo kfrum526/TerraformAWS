@@ -1,5 +1,5 @@
 variable "eks_name" {
-    default = "testcluster"
+  default = "testcluster"
 }
 
 variable "windows_id" {

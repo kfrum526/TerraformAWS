@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"bastion_instance","Source":"./modules/ec2-instance","Dir":"modules/ec2-instance"},{"Key":"dc_instance","Source":"./modules/ec2-instance","Dir":"modules/ec2-instance"},{"Key":"rhel_instance","Source":"./modules/ec2-instance","Dir":"modules/ec2-instance"},{"Key":"","Source":"","Dir":"."}]}
